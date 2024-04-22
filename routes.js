@@ -1,7 +1,9 @@
 const express = require('express') 
+const allControllers = require('./src/controllers/allControllers')
 const route = express.Router() 
 
-route.get('/weather/filter:', )
-route.get('/weather?citiy={city}')
-route.get('/weather/filter:')
-route.post('/weather')
+route.get('/weather', allControllers.getWeather )
+route.post('/weather/:city', allControllers.insertWheater)
+
+
+module.exports = route
