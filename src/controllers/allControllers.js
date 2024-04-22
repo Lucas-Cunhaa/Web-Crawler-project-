@@ -4,7 +4,8 @@ const mongoDB = require('../models/mongoDb.js')
 
 exports.getWeather = async (req, res) => {
    console.log('GET WEATHER')
-   const city = req.params.city
+   const city = req.query.city
+   console.log(city)
    const checkByCity = await mongoDB.getByCity(city)
    if (checkByCity.length < 1) {
       await fetch(`http://api.weatherapi.com/v1/current.json?key=${key}&q=${city}`, {
@@ -14,6 +15,12 @@ exports.getWeather = async (req, res) => {
       })
       .then(data => {
          console.log(data)
+         const location = data.location 
+         const current = data.current 
+         const newCity = new City( location.name, location.region,location.country, current.temp_c, current.temp_f,
+         current.condition.text, data.humidity, current.last_updated )
+         
+         mongoDB.insertWeatherInfo(newCity)
          res.status(200).send(data)
       })
       .catch(error => {
@@ -36,6 +43,7 @@ exports.insertWheater = async (req, res) =>  {
       const location = data.location 
       const current = data.current 
       const newCity = new City( location.name, location.region,location.country, current.temp_c, current.temp_f, current.condition.text, data.humidity, current.last_updated )
+      
       mongoDB.insertWeatherInfo(newCity)
       res.status(200).send(data)
    })

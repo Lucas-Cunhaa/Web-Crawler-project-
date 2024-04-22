@@ -31,7 +31,7 @@ class MongoDb {
 
   async getByCity (city) {
     try {
-      const request = await this.collection.find( { city : city } ).toArray();
+      const request = await this.collection.find( { City : city } ).toArray();
       console.log(request)
       return request 
     } catch (error) {

@@ -1,5 +1,5 @@
 class City { 
-    Name
+    City
     Region
     Country 
     TempCelsius
@@ -7,8 +7,8 @@ class City {
     Condition
     Humidity
     LastUpdate
-    constructor(name, region, country, tempCelsius, tempFahrenheit, condition, humidity, lastUpdate) {
-        this.Name = name 
+    constructor(city, region, country, tempCelsius, tempFahrenheit, condition, humidity, lastUpdate) {
+        this.City = city
         this.Region = region 
         this.Country = country 
         this.TempCelsius = tempCelsius
