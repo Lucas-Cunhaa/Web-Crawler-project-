@@ -4,6 +4,6 @@ const route = express.Router()
 
 route.get('/weather', allControllers.getWeather )
 route.post('/weather/:city', allControllers.insertWheater)
-
+route.get('/weather/:filter', allControllers.getWeatherByDate)
 
 module.exports = route

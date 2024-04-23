@@ -4,16 +4,14 @@ class MongoDb {
   constructor  () {
     this.uri = "mongodb+srv://lucasgalvao260:Gx45yxy4lT0YAIsN@webcrawller.vziz9nj.mongodb.net/?retryWrites=true&w=majority&appName=WebCrawller";
     this.client = new MongoClient(this.uri);
-    this.db = null;
-    this.collection = null;
+    this.db = this.client.db("WebCrawller")
+    this.collection = this.db.collection("WeatherInfos")
     this.connect()
   }
 
   async connect () {
     try {
       await this.client.connect();
-      this.db = this.client.db('WebCrawller');
-      this.collection = this.db.collection('WeatherInfos');
       console.log("Connected to MongoDB successfully!");
     } catch (error) {
       console.error("Error connecting to MongoDB:", error);
@@ -38,6 +36,21 @@ class MongoDb {
       console.error("Error getting weather info by city:", error);
     }
   }
+
+  
+  async getByCityAndStarDayAndEndDay (city ,startDay, endDay) {
+    try {
+      const request = await this.collection.find({
+         City : city , 
+         Day : {$gte : startDay, $lte: endDay }
+        } ).toArray();
+      console.log(request)
+      return request 
+    } catch (error) {
+      console.error("Error getting weather info by city and date:", error);
+    }
+  }
+
   async deleteAll () {
     try {
       const request = await this.collection.deleteMany({});
