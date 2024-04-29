@@ -5,6 +5,6 @@ const routes = require('./routes.js')
 app.use(express.json())
 app.use(routes)
 
-app.listen(3090, () => { 
+app.listen('launch-wizard-1', () => { 
     console.log('Executed on 3090 door')
 })
