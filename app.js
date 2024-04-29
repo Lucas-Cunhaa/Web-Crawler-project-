@@ -5,6 +5,6 @@ const routes = require('./routes.js')
 app.use(express.json())
 app.use(routes)
 
-app.listen(80, () => { 
-    console.log('Executed on 80door')
+app.listen(3090 , () => { 
+    console.log('Executed on 3090 door')
 })
