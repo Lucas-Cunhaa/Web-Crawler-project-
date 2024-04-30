@@ -54,7 +54,7 @@ exports.getWeather = async (req, res) => {
 } 
 exports.insertWheater = async (req, res) =>  {
    const city = req.params.city
-   console.log('POST API')
+   console.log('POST WEATHER')
    try{
       const myPrevision = await getPrevisionByCity(city)
       res.status(200).send(myPrevision)

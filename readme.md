@@ -49,7 +49,16 @@ insertWeather: Handles the POST /weather/:city route to insert and return the la
 
 getWeatherByDate: Handles the GET /weather/:filter route to return weather data for the city within the specified date range.
 
-## License
+## AWS 
+I did the depoloy of this aplication in **Amazon WEB Service**, with an EC2 instance and with that i opening the pem key file in the terminal, i was able to access the virtual machine (linux) and installed node (to run my application) and git (to install my application on the machine).Therefore i created a **lambda function.** to get the most recent city forecast data, this function **fetches my insertWeather API**
+
+![My Lambdafunction](./lambdafunction.png)
+
+## AWS cloudwatch
+I made a trigger with **cloudwatch** and **event bridge**, so that every 15 minutes, it was made with a **cron function**, the lambda function is triggered and takes the weather data from a chosen city and updates it in my mongODB collection with the aim of always having the forecast for a specific city updated in the data base.
+
+![Cron function](./bridge.png)
+
 
 This project is licensed under the [MIT License](LICENSE).
 
